@@ -47,7 +47,8 @@ export const usuarioController = {
     const usuarios = getUsers()
     const user = usuarios?.find(
       (usuario) =>
-        usuario?.email.trim().toLowerCase() === email?.trim().toLowerCase() &&
+        usuario?.email &&
+        usuario.email.trim().toLowerCase() === email?.trim().toLowerCase() &&
         usuario?.senha === senha,
     )
 
@@ -69,7 +70,7 @@ export const usuarioController = {
   register: ({ nome, email, senha }: { nome: string; email: string; senha: string }) => {
     const usuarios = getUsers()
     const alreadyExists = usuarios?.some(
-      (usuario) => usuario?.email.trim().toLowerCase() === email.trim().toLowerCase(),
+      (usuario) => usuario?.email && usuario.email.trim().toLowerCase() === email.trim().toLowerCase(),
     )
 
     if (alreadyExists) {
