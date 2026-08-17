@@ -52,14 +52,14 @@ export default function FuncionariosView() {
     event.preventDefault()
 
     const payload = {
-      nome: form?.nome.trim(),
-      sobrenome: form?.sobrenome.trim(),
-      dataNascimento: form?.dataNascimento,
-      dataContratacao: normalizeDateTime(form?.dataContratacao),
-      dataDemissao: normalizeDateTime(form?.dataDemissao),
+      nome: form.nome.trim(),
+      sobrenome: form.sobrenome.trim(),
+      dataNascimento: form.dataNascimento,
+      dataContratacao: normalizeDateTime(form.dataContratacao),
+      dataDemissao: normalizeDateTime(form.dataDemissao),
     }
 
-    if (!payload?.nome || !payload?.sobrenome || !payload?.dataNascimento || !payload?.dataContratacao) {
+    if (!payload.nome || !payload.sobrenome || !payload.dataNascimento || !payload.dataContratacao) {
       return
     }
 
@@ -80,20 +80,20 @@ export default function FuncionariosView() {
   }
 
   const handleEdit = (funcionario: Funcionario) => {
-    setEditingId(funcionario?.id)
+    setEditingId(funcionario.id)
     setForm({
-      nome: funcionario?.nome,
-      sobrenome: funcionario?.sobrenome,
-      dataNascimento: funcionario?.dataNascimento,
-      dataContratacao: normalizeInputDateTime(funcionario?.dataContratacao),
-      dataDemissao: normalizeInputDateTime(funcionario?.dataDemissao),
+      nome: funcionario.nome ?? '',
+      sobrenome: funcionario.sobrenome ?? '',
+      dataNascimento: funcionario.dataNascimento ?? '',
+      dataContratacao: normalizeInputDateTime(funcionario.dataContratacao),
+      dataDemissao: normalizeInputDateTime(funcionario.dataDemissao),
     })
   }
 
   const handleDelete = async (id: number) => {
     try {
       await funcionarioController.remove(id)
-      setFuncionarios((current) => current?.filter((funcionario) => funcionario.id !== id))
+      setFuncionarios((current) => current.filter((funcionario) => funcionario.id !== id))
       if (editingId === id) {
         setEditingId(null)
         setForm(emptyForm)
@@ -164,8 +164,8 @@ export default function FuncionariosView() {
                         <Button variant="secondary" onClick={() => handleEdit(funcionario)}>
                           Editar
                         </Button>
-                        <Button variant="danger" onClick={() => handleDelete(funcionario?.id)}>
-                          Excluir
+                        <Button variant="danger" onClick={() => handleDelete(funcionario.id!)}>
+                          flex
                         </Button>
                       </div>
                     </td>
