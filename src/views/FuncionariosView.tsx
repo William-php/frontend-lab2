@@ -92,6 +92,20 @@ export default function FuncionariosView() {
     })
   }
 
+  const handleDelete = async (id: number | null | undefined) => {
+    if (id === undefined || id === null) return
+    try {
+      await funcionarioController.remove(id)
+      setFuncionarios((current) => current.filter((funcionario) => funcionario.id !== id))
+      if (editingId === id) {
+        setEditingId(null)
+        setForm(emptyForm)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div className="space-y-8">
       <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6">
@@ -153,9 +167,9 @@ export default function FuncionariosView() {
                         <Button variant="secondary" onClick={() => handleEdit(funcionario)}>
                           Editar
                         </Button>
-                   <Button variant="danger" onClick={() => handleDelete(funcionario.id!)}>
-  Excluir
-</Button>
+                        <Button variant="danger" onClick={() => handleDelete(funcionario.id)}>
+                          Excluir
+                        </Button>
                       </div>
                     </td>
                   </tr>
