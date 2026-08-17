@@ -80,7 +80,9 @@ export default function FuncionariosView() {
   }
 
   const handleEdit = (funcionario: Funcionario) => {
-    setEditingId(funcionario.id)
+    if (funcionario.id !== undefined && funcionario.id !== null) {
+      setEditingId(funcionario.id)
+    }
     setForm({
       nome: funcionario.nome ?? '',
       sobrenome: funcionario.sobrenome ?? '',
@@ -88,19 +90,6 @@ export default function FuncionariosView() {
       dataContratacao: normalizeInputDateTime(funcionario.dataContratacao),
       dataDemissao: normalizeInputDateTime(funcionario.dataDemissao),
     })
-  }
-
-  const handleDelete = async (id: number) => {
-    try {
-      await funcionarioController.remove(id)
-      setFuncionarios((current) => current.filter((funcionario) => funcionario.id !== id))
-      if (editingId === id) {
-        setEditingId(null)
-        setForm(emptyForm)
-      }
-    } catch (error) {
-      console.error(error)
-    }
   }
 
   return (
@@ -164,9 +153,9 @@ export default function FuncionariosView() {
                         <Button variant="secondary" onClick={() => handleEdit(funcionario)}>
                           Editar
                         </Button>
-                        <Button variant="danger" onClick={() => handleDelete(funcionario.id!)}>
-                          flex
-                        </Button>
+                   <Button variant="danger" onClick={() => handleDelete(funcionario.id!)}>
+  Excluir
+</Button>
                       </div>
                     </td>
                   </tr>
