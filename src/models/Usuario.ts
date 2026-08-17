@@ -1,8 +1,8 @@
 export default class Usuario {
-  id: number
-  nome: string
-  email: string
-  senha: string
+  id?: number | null
+  nome?: string | null
+  email?: string | null
+  senha?: string | null
 
   constructor(id: number, nome: string, email: string, senha: string) {
     this.id = id

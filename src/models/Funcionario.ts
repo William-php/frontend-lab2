@@ -1,10 +1,10 @@
 export default class Funcionario {
-  id: number;
-  nome: string;
-  sobrenome: string;
-  dataNascimento: string;
-  dataContratacao: string;
-  dataDemissao: string | null;
+  id?: number | null;
+  nome?: string | null;
+  sobrenome?: string | null;
+  dataNascimento?: string | null;
+  dataContratacao?: string | null;
+  dataDemissao?: string | null;
   criadoEm?: string | null;
 
   constructor(
