@@ -4,7 +4,7 @@
     "target": "es2023",
     "lib": ["ES2023", "DOM"],
     "module": "esnext",
-    /* Remova a linha "types" daqui para o TS buscar sozinho */
+    "types": ["vite/client"], /* <-- ADICIONE ESTA LINHA DE VOLTA */
     "allowArbitraryExtensions": true,
     "skipLibCheck": true,
 
