@@ -45,10 +45,10 @@ export const usuarioController = {
 
   login: ({ email, senha }: { email: string; senha: string }) => {
     const usuarios = getUsers()
-    const user = usuarios.find(
+    const user = usuarios?.find(
       (usuario) =>
-        usuario.email.trim().toLowerCase() === email.trim().toLowerCase() &&
-        usuario.senha === senha,
+        usuario?.email.trim().toLowerCase() === email?.trim().toLowerCase() &&
+        usuario?.senha === senha,
     )
 
     if (!user) {
@@ -56,10 +56,10 @@ export const usuarioController = {
     }
 
     const safeUser = {
-      id: user.id,
-      nome: user.nome,
-      email: user.email,
-      senha: user.senha,
+      id: user?.id,
+      nome: user?.nome,
+      email: user?.email,
+      senha: user?.senha,
     }
 
     localStorage.setItem(AUTH_KEY, JSON.stringify(safeUser))
@@ -68,8 +68,8 @@ export const usuarioController = {
 
   register: ({ nome, email, senha }: { nome: string; email: string; senha: string }) => {
     const usuarios = getUsers()
-    const alreadyExists = usuarios.some(
-      (usuario) => usuario.email.trim().toLowerCase() === email.trim().toLowerCase(),
+    const alreadyExists = usuarios?.some(
+      (usuario) => usuario?.email.trim().toLowerCase() === email.trim().toLowerCase(),
     )
 
     if (alreadyExists) {
@@ -78,8 +78,8 @@ export const usuarioController = {
 
     const newUser = new Usuario(
       Date.now(),
-      nome.trim(),
-      email.trim(),
+      nome?.trim(),
+      email?.trim(),
       senha,
     )
 
@@ -93,7 +93,7 @@ export const usuarioController = {
     }
   },
 
-  isAuthenticated: () => Boolean(usuarioController.getCurrentUser()),
+  isAuthenticated: () => Boolean(usuarioController?.getCurrentUser()),
 }
 
 ensureSeedUsers()
